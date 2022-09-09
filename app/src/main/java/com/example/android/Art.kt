@@ -1,4 +1,6 @@
 package com.example.android
 
-open class Art(val name:String,val id:Int){
+import android.graphics.Bitmap
+
+open class Art(val name:String, val id: Int, val artist:String, val yil: Int){
 }

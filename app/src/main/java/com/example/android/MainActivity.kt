@@ -33,12 +33,16 @@ class MainActivity : AppCompatActivity() {
 
             val cursor = database.rawQuery("SELECT * FROM arts",null)
             val artNameIx = cursor.getColumnIndex("artname")
+            val artArtistIx = cursor.getColumnIndex("artistname")
+            val artYearIx = cursor.getColumnIndex("year")
             val idIx = cursor.getColumnIndex("id")
 
             while (cursor.moveToNext()) {
                 val name = cursor.getString(artNameIx)
+                val artist=cursor.getString(artArtistIx)
+                val year=cursor.getInt(artYearIx)
                 val id = cursor.getInt(idIx)
-                val art = Art(name,id)
+                val art = Art(name,id,artist,year)
                 artList.add(art)
             }
 

@@ -59,6 +59,10 @@ class ArtActivity : AppCompatActivity() {
 
         } else {
             binding.button.visibility = View.INVISIBLE
+            binding.imageView.isClickable=false
+            binding.artName.isFocusable=false
+            binding.year.isFocusable=false
+            binding.artistName.isFocusable=false
             val selectedId = intent.getIntExtra("id", 1)
 
             val cursor =
@@ -103,7 +107,7 @@ class ArtActivity : AppCompatActivity() {
 
             try {
 
-                database.execSQL("CREATE TABLE IF NOT EXISTS arts (id INTEGER PRIMARY KEY, artname VARCHAR, artistname VARCHAR, year VARCHAR, image BLOB)")
+                database.execSQL("CREATE TABLE IF NOT EXISTS arts (id INTEGER PRIMARY KEY, artname VARCHAR, artistname VARCHAR, year INTEGER, image BLOB)")
 
                 val sqlString =
                     "INSERT INTO arts (artname, artistname, year, image) VALUES (?, ?, ?, ?)"
@@ -127,6 +131,8 @@ class ArtActivity : AppCompatActivity() {
 
             //finish()
         }
+
+
     }
 
     fun makeSmallerBitmap(image: Bitmap, maximumSize: Int): Bitmap {
@@ -170,6 +176,7 @@ class ArtActivity : AppCompatActivity() {
                 Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             activityResultLauncher.launch(intentToGallery)
         }
+
     }
 
     private fun registerLauncher() {

@@ -18,11 +18,14 @@ class ArtAdapter(val artList : ArrayList<Art>) : RecyclerView.Adapter<ArtAdapter
 
     override fun onBindViewHolder(holder: ArtHolder, position: Int) {
         holder.binding.recyclerText.text = artList.get(position).name
+        holder.binding.recyclerDext.text = artList.get(position).artist
+        holder.binding.recyclerMext.text = artList.get(position).yil.toString()
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context,ArtActivity::class.java)
             intent.putExtra("info","old")
             intent.putExtra("id",artList[position].id)
             holder.itemView.context.startActivity(intent)
+
         }
     }
 
